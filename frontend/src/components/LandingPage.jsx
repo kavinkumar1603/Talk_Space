@@ -22,7 +22,7 @@ const LandingPage = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        <div className="h-screen bg-white text-zinc-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-hidden flex flex-col">
+        <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden flex flex-col">
 
             {/* Navigation */}
             <nav className="flex-none w-full z-50 py-5">

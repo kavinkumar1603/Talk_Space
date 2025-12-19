@@ -54,7 +54,7 @@ const Login = () => {
     };
 
     return (
-        <div className="h-screen w-full grid grid-cols-1 lg:grid-cols-2 font-sans overflow-hidden">
+        <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 font-sans overflow-x-hidden">
 
             {/* LEFT SIDE — Brand / Message (same as Signup) */}
             <div className="hidden lg:flex flex-col justify-center px-16 bg-white">

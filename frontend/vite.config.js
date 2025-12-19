@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+ server: {
+        allowedHosts: [
+          'heedfully-sweaty-caroline.ngrok-free.dev', ],// ✅ your ngrok domain here
+      },
 })
