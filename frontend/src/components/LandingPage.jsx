@@ -1,153 +1,165 @@
-import React from 'react';
-import { ArrowRight, MessageSquare, MoreHorizontal, Shield, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+    MessageSquare,
+    ArrowRight,
+    Menu,
+    X,
+    MoreHorizontal,
+    Smile,
+    Paperclip,
+    Send,
+    CheckCircle2
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * LandingPage Component
+ * The public-facing home page of the application.
+ * Features a hero section, feature highlights, and navigation to Login/Signup.
+ */
 const LandingPage = () => {
     const navigate = useNavigate();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col lg:flex-row bg-[#FAFAFA] font-sans text-zinc-900 selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+        <div className="h-screen bg-white text-zinc-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-hidden flex flex-col">
 
-            {/* Left Section */}
-            <div className="w-full lg:w-[55%] flex flex-col h-screen relative z-10 bg-[#FAFAFA]">
-
-                {/* Header */}
-                <header className="flex-none p-8 lg:p-12 flex items-center gap-3">
-                    <div className="w-11 h-11 bg-zinc-900 rounded-xl flex items-center justify-center text-white shadow-lg shadow-zinc-900/10">
-                        <MessageSquare size={20} strokeWidth={2.5} />
-                    </div>
-                    <span className="text-2xl font-bold tracking-tight text-zinc-900">
-                        TalkSpace
-                    </span>
-                </header>
-
-                {/* Main Content */}
-                <main className="flex-grow flex flex-col justify-center px-8 lg:px-24 w-full max-w-4xl mx-auto">
-
-                    <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 w-fit">
-                        <span className="flex h-2 w-2 relative">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75 animate-ping"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-500"></span>
-                        </span>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                            v2.0 Now Live
-                        </span>
+            {/* Navigation */}
+            <nav className="flex-none w-full z-50 py-5">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+                    <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+                        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+                            <MessageSquare size={20} strokeWidth={3} />
+                        </div>
+                        <span className="text-xl font-bold tracking-tight text-zinc-900">TalkSpace</span>
                     </div>
 
-                    <h1 className="text-5xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.9] mb-8">
-                        <span className="block text-zinc-900">Focus on</span>
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-600">
-                            Context.
-                        </span>
-                    </h1>
-
-                    <p className="text-lg lg:text-xl text-zinc-500 font-medium leading-relaxed mb-10 max-w-lg">
-                        Experience the clarity of monochrome messaging. Designed for professionals who value focus over noise. Secure, fast, and elegantly simple.
-                    </p>
-
-                    <div className="flex flex-wrap gap-4">
-                        <button
-                            onClick={() => navigate('/login')}
-                            className="bg-zinc-900 text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-2 hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-900/20 ring-4 ring-transparent hover:ring-zinc-100 cursor-pointer"
-                        >
-                            Start Chatting <ArrowRight size={20} />
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center gap-8">
+                        <button onClick={() => navigate('/login')} className="text-sm font-semibold text-zinc-600 hover:text-zinc-900">
+                            Log in
                         </button>
-
-                        <button
-                            onClick={() => navigate('/login')}
-                            className="bg-white text-zinc-900 border border-zinc-200 px-8 py-4 rounded-xl font-bold text-lg hover:border-zinc-300 transition-all shadow-sm cursor-pointer"
-                        >
-                            Log In
+                        <button onClick={() => navigate('/signup')} className="bg-zinc-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-zinc-800 shadow-lg active:scale-95">
+                            Get Started
                         </button>
                     </div>
 
-                    <div className="mt-16 flex items-center gap-8 text-zinc-400">
-                        <div className="flex items-center gap-2">
-                            <Shield size={18} />
-                            <span className="text-sm font-semibold">End-to-End Encrypted</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Zap size={18} />
-                            <span className="text-sm font-semibold">Lightning Fast</span>
-                        </div>
-                    </div>
-                </main>
-
-                {/* Footer */}
-                <footer className="flex-none p-8 lg:p-12 text-sm text-zinc-400 font-medium">
-                    © 2025 TalkSpace Inc. — Crafted for focus.
-                </footer>
-            </div>
-
-            {/* Right Section */}
-            <div className="w-full lg:w-[45%] bg-zinc-100 relative flex items-center justify-center p-8 lg:p-20 overflow-hidden min-h-[500px] lg:min-h-screen">
-
-                {/* Background */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-zinc-200/50 rounded-full blur-3xl opacity-70"></div>
-                    <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-zinc-300/50 rounded-full blur-3xl opacity-70"></div>
-                    <div className="absolute -bottom-8 left-1/3 w-64 h-64 bg-zinc-200/50 rounded-full blur-3xl opacity-70"></div>
-                    <div className="absolute inset-0 bg-[linear-gradient(#e4e4e7_1px,transparent_1px),linear-gradient(90deg,#e4e4e7_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
+                    {/* Mobile Menu Button */}
+                    <button className="md:hidden p-2 text-zinc-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
 
-                {/* Chat UI Mock */}
-                <div className="relative w-full max-w-md">
-                    <div className="bg-white rounded-3xl shadow-2xl shadow-zinc-400/20 overflow-hidden border border-zinc-100">
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="absolute top-16 left-0 right-0 bg-white border-b border-zinc-100 p-6 flex flex-col gap-4 shadow-xl md:hidden z-50">
+                        <button onClick={() => navigate('/login')} className="text-base font-medium text-zinc-600">Log in</button>
+                        <button onClick={() => navigate('/signup')} className="bg-indigo-600 text-white px-5 py-3 rounded-lg font-semibold">
+                            Get Started
+                        </button>
+                    </div>
+                )}
+            </nav>
 
-                        {/* Header */}
-                        <div className="bg-zinc-50 px-6 py-4 flex items-center justify-between border-b border-zinc-100">
-                            <div className="flex items-center gap-3">
-                                <div className="flex -space-x-2">
-                                    <div className="w-8 h-8 rounded-full border-2 border-white bg-zinc-200 flex items-center justify-center text-[10px] font-bold text-zinc-500">JD</div>
-                                    <div className="w-8 h-8 rounded-full border-2 border-white bg-zinc-300 flex items-center justify-center text-[10px] font-bold text-zinc-600">AS</div>
-                                </div>
-                                <div>
-                                    <h3 className="text-xs font-bold text-zinc-900">Design Team</h3>
-                                    <p className="text-[10px] text-zinc-500 font-medium">2 active now</p>
-                                </div>
-                            </div>
-                            <MoreHorizontal size={18} className="text-zinc-400" />
+            {/* Main Content (FIXED HEIGHT) */}
+            <main className="flex-1 flex items-center relative overflow-hidden">
+
+                {/* Background Blobs */}
+                <div className="absolute inset-0 -z-10 pointer-events-none">
+                    <div className="absolute top-[-15%] left-[-15%] w-[420px] h-[420px] bg-indigo-50 rounded-full blur-3xl opacity-60"></div>
+                    <div className="absolute bottom-[-15%] right-[-15%] w-[520px] h-[520px] bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                    {/* LEFT CONTENT */}
+                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-zinc-200 shadow-sm mb-6">
+                            <span className="relative flex h-2 w-2">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75 animate-ping"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                            </span>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                                v2.0 is now live
+                            </span>
                         </div>
 
-                        {/* Messages */}
-                        <div className="p-6 space-y-6 bg-white min-h-[300px]">
+                        <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-5 leading-tight">
+                            Connect with your team, <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">
+                                without the noise.
+                            </span>
+                        </h1>
 
-                            <div className="text-center text-xs text-zinc-300 font-medium my-4">
-                                Today 9:41 AM
-                            </div>
+                        <p className="text-base text-zinc-500 mb-8 max-w-lg">
+                            The communication platform designed for focus.
+                            Real-time messaging and seamless collaboration tools.
+                        </p>
 
-                            <div className="flex items-end gap-3">
-                                <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-100">
-                                    <span className="text-[10px] font-bold text-zinc-500">JD</span>
-                                </div>
-                                <div className="bg-zinc-100 px-5 py-3 rounded-2xl rounded-bl-sm text-zinc-700 text-sm max-w-[85%]">
-                                    The monochrome updated palette looks incredible. <span className="font-semibold text-zinc-900">Clean and distraction-free.</span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-end gap-3 flex-row-reverse">
-                                <div className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-[10px] font-bold">
-                                    ME
-                                </div>
-                                <div className="bg-zinc-900 px-5 py-3 rounded-2xl rounded-br-sm text-zinc-50 text-sm max-w-[85%]">
-                                    Exactly. It really helps focus on the content.
-                                </div>
-                            </div>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <button onClick={() => navigate('/signup')} className="bg-indigo-600 text-white px-7 py-3.5 rounded-xl font-bold text-base flex items-center gap-2 hover:bg-indigo-700 shadow-lg shadow-indigo-600/20">
+                                Start for free <ArrowRight size={18} />
+                            </button>
+                            <button onClick={() => navigate('/demo')} className="bg-white text-zinc-900 border border-zinc-200 px-7 py-3.5 rounded-xl font-bold text-base hover:bg-zinc-50">
+                                View Demo
+                            </button>
                         </div>
 
-                        {/* Input */}
-                        <div className="p-4 border-t border-zinc-100 bg-white">
-                            <div className="h-12 bg-zinc-50 rounded-full border border-zinc-200 flex items-center px-4 justify-between">
-                                <span className="text-sm text-zinc-400">Type a message...</span>
-                                <div className="w-8 h-8 bg-zinc-900 rounded-full flex items-center justify-center text-white">
-                                    <ArrowRight size={14} />
+                        <div className="mt-6 flex items-center gap-6 text-sm text-zinc-400">
+                            <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-indigo-500" /> No credit card</span>
+                            <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-indigo-500" /> 14-day trial</span>
+                        </div>
+                    </div>
+
+                    {/* RIGHT CHAT VISUAL (HEIGHT FIXED) */}
+                    <div className="relative w-full max-w-md mx-auto lg:max-w-none lg:ml-auto">
+
+                        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100 to-white rounded-[2.5rem] rotate-3 scale-105 opacity-50 -z-10"></div>
+
+                        <div className="bg-white rounded-2xl shadow-2xl border border-zinc-100 overflow-hidden">
+                            <div className="px-5 py-3 border-b border-zinc-100 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">JD</div>
+                                    <div>
+                                        <h3 className="font-bold text-zinc-900 text-sm">John Doe</h3>
+                                        <p className="text-xs text-indigo-500">Typing…</p>
+                                    </div>
+                                </div>
+                                <MoreHorizontal size={18} className="text-zinc-400" />
+                            </div>
+
+                            <div className="p-5 bg-slate-50/50 h-[300px] flex flex-col gap-4">
+                                <div className="text-[10px] text-zinc-400 text-center font-bold">Today</div>
+
+                                <div className="bg-white border border-zinc-100 p-3 rounded-2xl text-sm text-zinc-600 max-w-[80%]">
+                                    The new dashboard layout looks amazing! 🚀
+                                </div>
+
+                                <div className="bg-zinc-900 p-3 rounded-2xl text-sm text-white max-w-[80%] ml-auto">
+                                    Glad you like it! We focused on simplicity.
+                                </div>
+
+                                <div className="mt-auto bg-white border border-zinc-200 rounded-xl p-2 flex items-center gap-2">
+                                    <Smile size={18} className="text-zinc-400" />
+                                    <span className="text-sm text-zinc-300 flex-1">Type your message…</span>
+                                    <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
+                                        <Send size={14} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="flex-none py-4 text-center">
+                <p className="text-xs text-zinc-400">
+                    © 2025 TalkSpace Inc. Crafted for focus.
+                </p>
+            </footer>
         </div>
     );
 };
